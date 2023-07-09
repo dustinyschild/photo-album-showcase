@@ -6,8 +6,8 @@ describe("Home", () => {
   it("renders a heading", () => {
     render(<Home />);
 
-    const heading = screen.getByRole("heading", {
-      name: /welcome to next\.js!/i
+    const heading = screen.getByTestId("main-heading", {
+      name: "Photo Album Showcase"
     });
 
     expect(heading).toBeInTheDocument();
