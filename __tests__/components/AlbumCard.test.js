@@ -11,7 +11,13 @@ const albumCardData = {
 };
 
 describe("AlbumCard", () => {
-  it("should show album content", () => {
+  it("should link to album", () => {
     render(<AlbumCard {...albumCardData} />);
+
+    const albumLink = screen.getByRole("link");
+
+    console.log(albumLink.href);
+
+    expect(albumLink.href).toBe("http://localhost/album/1");
   });
 });
