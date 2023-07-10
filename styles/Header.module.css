@@ -1,0 +1,24 @@
+.header {
+  margin: 0 5px;
+}
+
+.linkBar {
+  display: flex;
+  flex-direction: row-reverse;
+  border-bottom: solid rgba(128, 128, 128, 0.5) 1px;
+  padding-bottom: 5px;
+}
+
+.socialLink {
+  padding: 0;
+  margin: 5px;
+}
+
+.mainHeader, .subHeader {
+  text-align: center;
+}
+
+.subHeader {
+  margin-top: 0;
+  font-weight: 400;
+}
