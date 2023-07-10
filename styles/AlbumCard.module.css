@@ -1,8 +1,7 @@
 .content {
-  margin: 10px;
+  margin: 20px;
 }
 
-
-
-
-
+.container:hover {
+  background-color: rgba(0, 0, 0, 0.1)
+}
