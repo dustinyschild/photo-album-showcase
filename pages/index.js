@@ -14,10 +14,12 @@ export default function Home({ albumCards }) {
 
       <Header />
 
-      <main data-testid="main-content" className={styles.main}>
-        {albumCards.map((card) => (
-          <AlbumCard key={card.albumId} {...card} />
-        ))}
+      <main data-testid="main-content" className={styles.center}>
+        <div className={styles.mainContent}>
+          {albumCards.map((card) => (
+            <AlbumCard key={card.albumId} {...card} />
+          ))}
+        </div>
       </main>
 
       <footer className={styles.footer}></footer>

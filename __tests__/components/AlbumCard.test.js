@@ -16,8 +16,6 @@ describe("AlbumCard", () => {
 
     const albumLink = screen.getByRole("link");
 
-    console.log(albumLink.href);
-
     expect(albumLink.href).toBe("http://localhost/album/1");
   });
 
@@ -27,5 +25,15 @@ describe("AlbumCard", () => {
     const image = screen.getByRole("img");
 
     expect(image).toBeInTheDocument();
+  });
+
+  // I would have prefered an album title but that doesn't exist in this data set
+  it("should show the albumId", () => {
+    render(<AlbumCard {...albumCardData} />);
+
+    const albumName = screen.getByTestId("album-title");
+
+    expect(albumName).toBeInTheDocument();
+    expect(albumName.textContent).toBe("Album 1");
   });
 });
