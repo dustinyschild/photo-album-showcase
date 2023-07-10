@@ -1,0 +1,17 @@
+.content {
+  margin: 20px;
+  display: flex;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: left;
+}
+
+.title {
+  margin: 0 30px;
+  font-size: 20px;
+}
