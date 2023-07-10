@@ -6,7 +6,7 @@ const AlbumCard = ({ albumId, thumbnailUrl, title }) => {
   return (
     <div className={styles.container}>
       <div className={styles.content} data-testid={`album-card-${albumId}`}>
-        <div className={styles.imgWrapper}>
+        <div>
           <Link href={`/album/${albumId}`}>
             <Image alt={title} src={thumbnailUrl} height="150" width="150" />
           </Link>

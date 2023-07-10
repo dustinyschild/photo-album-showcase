@@ -2,6 +2,7 @@ import styles from "../../styles/Home.module.css";
 import Head from "next/head";
 import Header from "../../components/Header";
 import { useEffect } from "react";
+import PhotoCard from "../../components/PhotoCard";
 
 export default function Album({ photos }) {
   return (
@@ -18,9 +19,7 @@ export default function Album({ photos }) {
 
       <main data-testid="main-content" className={styles.main}>
         {photos.map((photo, i) => (
-          <div key={photo.id} data-testid={`photo-card-${i}`}>
-            photo {photo.id}
-          </div>
+          <PhotoCard {...photo} key={i} />
         ))}
       </main>
 
