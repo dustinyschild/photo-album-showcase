@@ -1,14 +1,35 @@
+import Image from "next/image";
 import styles from "../styles/Header.module.css";
 
 const Header = () => {
   return (
     <header className={styles.header} data-testid="header">
       <div className={styles.linkBar}>
-        <a className={styles.socialLink} data-testid="github-link" href="#">
-          Github
+        <a
+          className={styles.socialLink}
+          data-testid="github-link"
+          href="https://github.com/dustinyschild"
+          target="_blank"
+        >
+          <Image
+            alt="Github - Dustinyschild's Profile"
+            src="/github-icon.png"
+            width="24"
+            height="24"
+          />
         </a>
-        <a className={styles.socialLink} data-testid="linkedin-link" href="#">
-          LinkedIn
+        <a
+          className={styles.socialLink}
+          data-testid="linkedin-link"
+          href="https://www.linkedin.com/in/dustinyschild/"
+          target="_blank"
+        >
+          <Image
+            alt="Dustin Yelland - LinkedIn"
+            src="/linkedin-icon.png"
+            width="24"
+            height="24"
+          />
         </a>
       </div>
 

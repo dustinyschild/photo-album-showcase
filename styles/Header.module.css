@@ -6,7 +6,6 @@
   display: flex;
   flex-direction: row-reverse;
   border-bottom: solid rgba(128, 128, 128, 0.5) 1px;
-  padding-bottom: 5px;
 }
 
 .socialLink {
