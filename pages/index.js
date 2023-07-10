@@ -1,9 +1,9 @@
 import Head from "next/head";
-import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Header from "../components/Header";
+import AlbumCard from "../components/AlbumCard";
 
-export default function Home() {
+export default function Home({ albumCards }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -14,9 +14,34 @@ export default function Home() {
 
       <Header />
 
-      <main data-testid="main-content" className={styles.main}></main>
+      <main data-testid="main-content" className={styles.main}>
+        {albumCards.map((card) => (
+          <AlbumCard key={card.albumId} {...card} />
+        ))}
+      </main>
 
       <footer className={styles.footer}></footer>
     </div>
   );
+}
+
+// serverside data fetching
+export async function getServerSideProps() {
+  // Fetch data from external API
+  const res = await fetch("https://jsonplaceholder.typicode.com/photos");
+  const photos = await res.json();
+
+  const albumCards = [];
+
+  // get first photo in each album
+  photos.forEach((photo) => {
+    if (albumCards[photo.albumId - 1]) {
+      return;
+    } else {
+      albumCards.push(photo);
+    }
+  });
+
+  // Pass data to the page via props
+  return { props: { albumCards } };
 }
