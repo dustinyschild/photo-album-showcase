@@ -1,8 +1,9 @@
 import styles from "../../styles/Home.module.css";
 import Head from "next/head";
 import Header from "../../components/Header";
+import { useEffect } from "react";
 
-export default function Album() {
+export default function Album({ photos }) {
   return (
     <div>
       <Head>
@@ -13,9 +14,29 @@ export default function Album() {
 
       <Header />
 
-      <main data-testid="main-content" className={styles.main}></main>
+      <h3 data-testid="album-title">Album {photos[0].albumId}</h3>
+
+      <main data-testid="main-content" className={styles.main}>
+        {photos.map((photo, i) => (
+          <div key={photo.id} data-testid={`photo-card-${i}`}>
+            photo {photo.id}
+          </div>
+        ))}
+      </main>
 
       <footer className={styles.footer}></footer>
     </div>
   );
+}
+
+// serverside data fetching
+export async function getServerSideProps({ params }) {
+  // Fetch data from external API
+  const res = await fetch(
+    `https://jsonplaceholder.typicode.com/photos?albumId=${params.id}`
+  );
+  const photos = await res.json();
+
+  // Pass data to the page via props
+  return { props: { photos } };
 }
