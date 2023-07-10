@@ -20,4 +20,12 @@ describe("AlbumCard", () => {
 
     expect(albumLink.href).toBe("http://localhost/album/1");
   });
+
+  it("should contain the first photo's thumbnail", () => {
+    render(<AlbumCard {...albumCardData} />);
+
+    const image = screen.getByRole("img");
+
+    expect(image).toBeInTheDocument();
+  });
 });
