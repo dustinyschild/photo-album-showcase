@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { act, render, screen, waitFor } from "@testing-library/react";
 import AlbumCard from "../../components/AlbumCard";
 import "@testing-library/jest-dom";
 
@@ -55,8 +55,11 @@ global.fetch = jest.fn(() =>
 );
 
 describe("AlbumCard", () => {
-  it("should show the album title (albumId)", () => {
+  it("should show the album title (albumId)", async () => {
     render(<AlbumCard {...albumCardData} />);
+    await waitFor(() => {
+      expect(screen.getByTestId("photo-thumbnails"));
+    });
 
     const albumName = screen.getByTestId("album-title");
 
@@ -65,16 +68,23 @@ describe("AlbumCard", () => {
   });
 
   // mock the data for hook
-  it("should show up to 5 album photos", () => {
+  it("should show up to 5 album photos", async () => {
     render(<AlbumCard {...albumCardData} />);
+    await waitFor(() => {
+      expect(screen.getByTestId("photo-thumbnails"));
+    });
 
     const photos = screen.queryAllByRole("img");
 
+    expect(global.fetch).toHaveBeenCalled();
     expect(photos).toHaveLength(5);
   });
 
-  it("should have a See All link", () => {
+  it("should have a See All link", async () => {
     render(<AlbumCard {...albumCardData} />);
+    await waitFor(() => {
+      expect(screen.getByTestId("photo-thumbnails"));
+    });
 
     const albumLink = screen.getByRole("link");
 

@@ -3,29 +3,36 @@ import styles from "../styles/AlbumCard.module.css";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const AlbumCard = ({ albumId, thumbnailUrl, title }) => {
+const getFirstFivePhotos = async (id) =>
+  fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${id}`)
+    .then((res) => res.json())
+    .then((data) => data.slice(0, 5));
+
+const AlbumCard = ({ albumId }) => {
   const [albumPhotos, setAlbumPhotos] = useState();
 
   useEffect(() => {
-    const getFirstFivePhotos = async () =>
-      fetch(
-        `https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`
-      ).then((res) => res.json());
-
-    getFirstFivePhotos().then((data) => {
-      setAlbumPhotos(data.slice(0, 5));
-    });
+    getFirstFivePhotos(albumId).then((data) => setAlbumPhotos(data));
   }, [albumId]);
 
   return (
     <div className={styles.container}>
       <div className={styles.content} data-testid={`album-card-${albumId}`}>
-        <div>
-          <Link href={`/album/${albumId}`}>
-            <Image alt={title} src={thumbnailUrl} height="150" width="150" />
-          </Link>
-        </div>
+        {albumPhotos && (
+          <div data-testid="photo-thumbnails">
+            {albumPhotos.map((photo) => (
+              <Image
+                key={photo.id}
+                alt={photo.title}
+                src={photo.thumbnailUrl}
+                height="150"
+                width="150"
+              />
+            ))}
+          </div>
+        )}
         <div data-testid="album-title">Album {albumId}</div>
+        <Link href={`/album/${albumId}`}>See All</Link>
       </div>
     </div>
   );
