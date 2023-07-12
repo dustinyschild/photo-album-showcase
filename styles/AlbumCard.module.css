@@ -1,7 +1,36 @@
-.content {
-  margin: 20px;
+.container {
+  display: flex;
+  justify-content: center;
 }
 
-.container:hover {
+.content {
+  padding: 20px 30px;
+  margin: 20px;
+  border-radius: 10px;
+}
+
+.content:hover {
   background-color: rgba(0, 0, 0, 0.1)
+}
+
+.photoContainer {
+  margin: 10px;
+}
+
+.photoContainer img {
+  margin: 10px;
+}
+
+.textContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.albumTitle {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.textContainer a:hover {
+  font-weight: 600;
 }

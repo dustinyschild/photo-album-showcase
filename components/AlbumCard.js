@@ -18,8 +18,14 @@ const AlbumCard = ({ albumId }) => {
   return (
     <div className={styles.container}>
       <div className={styles.content} data-testid={`album-card-${albumId}`}>
-        {albumPhotos && (
-          <div data-testid="photo-thumbnails">
+        <div className={styles.textContainer}>
+          <div className={styles.albumTitle} data-testid="album-title">
+            Album {albumId}
+          </div>
+          <Link href={`/album/${albumId}`}>See All &#12297;</Link>
+        </div>
+        {albumPhotos ? (
+          <div className={styles.photoContainer} data-testid="photo-thumbnails">
             {albumPhotos.map((photo) => (
               <Image
                 key={photo.id}
@@ -30,9 +36,9 @@ const AlbumCard = ({ albumId }) => {
               />
             ))}
           </div>
+        ) : (
+          "Loading Images..."
         )}
-        <div data-testid="album-title">Album {albumId}</div>
-        <Link href={`/album/${albumId}`}>See All</Link>
       </div>
     </div>
   );

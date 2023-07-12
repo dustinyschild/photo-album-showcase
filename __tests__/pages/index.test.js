@@ -48,6 +48,7 @@ global.fetch = jest.fn(() =>
   })
 );
 
+// eslint-disable-next-line react/display-name
 jest.mock("../../components/AlbumCard", () => () => {
   const AlbumCard = "album-card";
   return <AlbumCard data-testid="album-card" />;
