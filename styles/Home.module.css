@@ -2,7 +2,7 @@
   padding: 4rem 15px;
   flex: 1;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
 }
 
 .center {

@@ -48,6 +48,12 @@ global.fetch = jest.fn(() =>
   })
 );
 
+// eslint-disable-next-line react/display-name
+jest.mock("../../components/AlbumCard", () => () => {
+  const AlbumCard = "album-card";
+  return <AlbumCard data-testid="album-card" />;
+});
+
 describe("Home", () => {
   it("renders the Header", () => {
     render(<Home albumCards={albumCards} />);
@@ -61,10 +67,10 @@ describe("Home", () => {
     render(<Home albumCards={albumCards} />);
 
     const content = screen.getByTestId("main-content");
-    const photoCard = screen.getByTestId("album-card-1");
+    const albumCardElements = screen.getAllByTestId("album-card");
 
     expect(content).toBeInTheDocument();
-    expect(photoCard).toBeInTheDocument();
+    expect(albumCardElements).toHaveLength(2);
   });
 
   it("should return first photo in each album", async () => {
